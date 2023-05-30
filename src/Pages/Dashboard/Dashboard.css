@@ -1,0 +1,20 @@
+.datos {
+    display: flex;
+    flex-direction: column;
+}
+
+aside {
+
+}
+
+section {
+    
+    display: flex;
+}
+
+.dashboard {
+    display: flex;
+    width: 1070px;
+    justify-content: space-between;
+}
+
