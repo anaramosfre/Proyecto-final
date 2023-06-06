@@ -11,9 +11,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button, Typography } from "@mui/material";
 import { UserContext } from "../../Context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import Swal from 'sweetalert2'
 import Alert from '@mui/material/Alert';
+
 
 
 export default function Registro() {
@@ -103,7 +104,7 @@ export default function Registro() {
             <div className="login">
             <Typography variant="h5" margin="auto">
                 Iniciar Sesión
-            </Typography>
+            </Typography> <br/>
             <Box
                 component="form"
                 sx={{
@@ -154,11 +155,11 @@ export default function Registro() {
                     variant="outlined"
                 >
                     Acceder
-                </Button>
+                </Button> <br />
                 </FormControl>
 
             </Box>
-            <p>Olvidé mi contraseña</p>
+            <p> Recuperar contraseña</p>
 
             </div>
         </>

@@ -1,11 +1,11 @@
 import "./Home.css";
 
-import { Typography, Grid, TextField, InputAdornment, IconButton, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
-
+import { Typography, Grid, TextField, InputAdornment, IconButton, FormControl, Select, MenuItem, InputLabel, Button } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import CardProduct from "../../Components/Card/Card";
 import { useContext, useState } from "react";
 import { Context } from "../../Context/Context";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -45,15 +45,33 @@ const Home = () => {
     return (
         <>  
     
-            <header className="bg-section"></header>
+            <header className="bg-section">
+                <div className="titulo">
+                <Typography variant="h3">
+                    ¿Tienes libros usados que quieras vender o comprar?
+                </Typography>
+                <Typography variant="h4"> <br />
+                    Libros con pasado, historias con futuro
+                </Typography>
+                <div className="boton">
+                <Button sx={{ width: 300, borderRadius:50 }} variant="contained"
+                component={Link}
+                to={"./Registro"}
+                >
+                    Comienza Aquí
+                </Button>
+                </div>
+                </div>
+            </header>
             <main>
-                <Typography variant="h5" textAlign="center"> Catálogo </Typography>
-
+                <div className="subtitulo">
+                <Typography sx={{m:1}} variant="h4" textAlign="center" color="primary"> Catálogo </Typography> 
                 <div className="filtros">
-                <FormControl  sx={{ m: 1, minWidth: 350 }}>
+                <FormControl  sx={{ m: 1, width: 480 }}>
                 <TextField
                     type="text"
                     placeholder="Título o Autor"
+                    variant="outlined"
                     value={searchText}
                     onChange={handleSearchTextChange}
                     InputProps={{
@@ -63,10 +81,10 @@ const Home = () => {
                                     <SearchIcon />
                                 </IconButton>
                             </InputAdornment>
-                        ),
-                    }}
-                />
+                        )}}
+                        />
                 </FormControl>
+                <div>
                 <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
                 <InputLabel id="demo-simple-select-standard-label">Categorías</InputLabel>
                     <Select
@@ -96,10 +114,11 @@ const Home = () => {
                         <MenuItem value="menor">Menor a Mayor</MenuItem>
                     </Select>
                 </FormControl>
-
                 </div>
+                </div>
+                </div> <br/>
                 
-                <Grid container justifyContent="center">
+                <Grid container justifyContent="center" >
                     {librosFiltrados.map((libro) => (
                         <CardProduct key={libro.id} libro={libro} />
                     ))}

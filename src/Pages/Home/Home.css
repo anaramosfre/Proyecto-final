@@ -1,15 +1,29 @@
-
 .bg-section {
     background: url("https://images.unsplash.com/photo-1476169785137-3bfe32e30ee1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
-    height: 600px;
+    height: 550px;
     background-size: cover;
-    background-position:bottom; 
-
-}
-
-.filtro{
+    background-position: bottom;
     display: flex;
-    justify-content: center;
+    justify-content: start;
 }
 
+.filtros{
+    display: flex;
+    justify-content: space-around;
+}
+
+.titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+    width: 700px;
+}
+.subtitulo {
+    padding: 50px;
+    background-color: #F9F5F6
+}
+.boton {
+    margin: auto;
+}
 

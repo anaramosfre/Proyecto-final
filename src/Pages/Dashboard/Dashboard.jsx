@@ -176,7 +176,7 @@ const Dashboard = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
-                    {error.nameError && <Alert variant="filled" severity="error">{error.nameError}</Alert>}
+                    {error.nameError && <Alert variant="outlined" severity="error">{error.nameError}</Alert>}
                     <TextField
                         label="Correo"
                         id="filled-size-normal"
@@ -186,7 +186,7 @@ const Dashboard = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    {error.emailError && <Alert variant="filled" severity="error">{error.emailError}</Alert>}
+                    {error.emailError && <Alert variant="outlined" severity="error">{error.emailError}</Alert>}
                     <TextField
                         label="Contraseña"
                         id="filled-size-normal"
@@ -196,7 +196,7 @@ const Dashboard = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     /> 
-                    {error.passwordError && <Alert variant="filled" severity="error">{error.passwordError}</Alert>}
+                    {error.passwordError && <Alert variant="outlined" severity="error">{error.passwordError}</Alert>}
                     <br />
                     <Button
                         type="submit"

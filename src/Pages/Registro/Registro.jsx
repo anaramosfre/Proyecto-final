@@ -1,4 +1,5 @@
-import { Box, TextField, Button } from "@mui/material";
+import "./Registro.css"
+import { Box, TextField, Button, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -107,18 +108,24 @@ const Registro = () => {
     };
 
     return (
-        <>
-            <Box
+        <>  
+            <div className="registrate">
+            <Typography variant="h5" textAlign="center">
+                Registrate aquí
+            </Typography> <br/>
+            <Box   
+                sx={{
+                    '& > :not(style)': { m: 1 },
+                }}
                 component="form"
                 onSubmit={handleSubmit}
                 width="400px"
                 alignSelf="center"
                 margin="auto"
-            >
+            >   
                 <TextField
                     id="name"
                     label="Nombre"
-                    margin="normal"
                     type="text"
                     variant="outlined"
                     fullWidth
@@ -127,11 +134,9 @@ const Registro = () => {
                     error={!!error.nameError}
                     helperText={error.nameError}
                 />
-
                 <TextField
                     id="email"
                     label="Email"
-                   
                     variant="outlined"
                     fullWidth
                     error={!!error.emailError}
@@ -198,6 +203,7 @@ const Registro = () => {
                     Registrarse
                 </Button>
             </Box>
+            </div>
         </>
     )
 }
