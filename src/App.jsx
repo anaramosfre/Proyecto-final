@@ -20,13 +20,10 @@ import UpdateProduct from "./Pages/UpdateProduct"
 
 
 const App = () => { 
-
-  const {user} = useContext(UserContext)
-
+  const {user} = useContext(UserContext);
 
   return (
     <div className="App">
-
     <BrowserRouter>
       <Navbar/>
       <Routes>
@@ -44,9 +41,7 @@ const App = () => {
       </Routes>
       <Footer />
     </BrowserRouter>
-  
   </div>
-  ) 
-}
+  )}
 
 export default App

@@ -1,8 +1,11 @@
 import { useState } from "react";
-
 import { createContext } from "react";
+import Swal from "sweetalert2";
 
 export const FavoritesContext = createContext()
+
+
+
 
 const FavoritesProvider = ({children}) => {
 
@@ -10,6 +13,10 @@ const FavoritesProvider = ({children}) => {
 
     const addFavorites = (libro) => {
         setFavorites([...favorites, libro]);
+        Swal.fire({
+            icon: 'success',
+            title: 'Agregado a favoritos ♥',
+        })
     };
 
     const deleteFavorites = (id) => {

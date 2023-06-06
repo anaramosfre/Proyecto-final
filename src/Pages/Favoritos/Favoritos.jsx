@@ -2,9 +2,8 @@ import { FavoritesContext } from "../../Context/FavoritesContex"
 import { useContext} from "react"
 import { Box, Card, Grid, Typography, CardMedia, CardContent, CardActions } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 import IconButton from '@mui/material/IconButton';
-import { Context } from "../../Context/Context";
 
 
 const Favorites = () => {
@@ -12,20 +11,26 @@ const Favorites = () => {
     const {favorites, deleteFavorites} = useContext(FavoritesContext)
 
 
+
     return (
-        <>
-            <Grid>
-                <Typography variant="h5">Favoritos</Typography>
+        <>  
+            <Typography marginTop="50px" textAlign="center" variant="h5">Favoritos</Typography>
+            <Grid 
+            container
+            justifyContent="center"
+            gap={4}
+            marginTop="50px"
+            >
                 {favorites.map((item) => (
                     <Card 
                     key={item.id}
                     sx={{
-                        width: 220,
+                        width: 200,
                     }}>
                         <CardMedia
                         component="img"
                         alt="imagen portada"
-                        height="300"
+                        height="280"
                         src={item.imagen}
                     />
                         <CardContent>
@@ -36,26 +41,15 @@ const Favorites = () => {
                             {item.autor}
                         </Typography>
                         <Typography >
-                           $ {item.precio}
+                        $ {item.precio}
                         </Typography>
-
                         </CardContent>
-                        <CardActions>
-                        <IconButton aria-label="delete" size="large">
-                            <AddShoppingCartIcon
-                            fontSize="inherit"
-                            onClick={() => handleclickAdd(item.id)}
-                            />
-                        </IconButton>
                         <IconButton aria-label="delete" size="large">
                             <DeleteIcon 
                             fontSize="inherit"
                             onClick={() => deleteFavorites(item.id)}
                             />
                         </IconButton>
-
-                        </CardActions>
-                    
                     </Card>
                 ))}
                 {favorites.length === 0 && <p>No existen favoritos</p>}        

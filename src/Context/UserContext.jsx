@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 export const UserContext = createContext();
 
@@ -60,10 +61,14 @@ const UserProvider = ({ children }) => {
     };
 
     const updateUser = (user) => {
-        setUser(user)
-    }
+        setUser(user); 
 
-
+        const usersUpdate = users.map((item) => 
+        item.id === user.id ? user : item
+        ); 
+        setUsers(usersUpdate);
+        };
+    
 
     return (
         <UserContext.Provider value={{ user, login, logout, register, updateUser }}>

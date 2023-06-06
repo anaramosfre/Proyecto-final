@@ -1,4 +1,3 @@
-
 import "./IniciarSesion.css"
 import { useContext, useState } from "react";
 import Box from '@mui/material/Box';
@@ -10,10 +9,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { UserContext } from "../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
-
+import Swal from 'sweetalert2'
+import Alert from '@mui/material/Alert';
 
 
 export default function Registro() {
@@ -24,15 +24,69 @@ export default function Registro() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    const [error, setError] = useState({
+        error: false,
+        message: "",
+    });
+
+    const validarEmail = (email) => {
+        const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        return regex.test(email);
+    };
+    
+
+    const validarFormulario = () => {
+        let valid = true; 
+        const errors = {
+            emailError: "",
+            passwordError:""
+        };
+
+    if (!validarEmail(email)) {
+        errors.emailError = "Formato de email no es válido";
+        valid = false;
+    }
+
+    if (password.length <6) {
+        errors.passwordError ="La contraseña debe tener al menos 6 caracteres"
+        valid= false;
+    }
+    if  (!/\d/.test(password)) {
+        errors.passwordError = "La contraseña debe contener al menos un número"
+        valid = false;
+    } 
+    if (/\s/.test(password)) {
+        errors.passwordError = "La contraseña no debe contener espacios"
+        valid = false;
+        
+    }
+
+    setError(errors);
+    return valid;
+};
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!validarFormulario()){
+            return;
+        }
+
         const user = await login(email, password);
         if (user) {
             setEmail("");
             setPassword(""); 
-            return navigate("/Dashboard");
+            return navigate("/Dashboard") 
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'Usuario no registrado',
+                footer: '<a href="">¿Olvidó su contraseña?</a>'
+            })
+            
         }
-        alert("incorrecto")
     };
 
 
@@ -45,7 +99,11 @@ export default function Registro() {
     };
 
     return (
-        <>
+        <>  
+            <div className="login">
+            <Typography variant="h5" margin="auto">
+                Iniciar Sesión
+            </Typography>
             <Box
                 component="form"
                 sx={{
@@ -63,8 +121,11 @@ export default function Registro() {
                     label="Email"
                     variant="outlined"
                     value={email}
-                    onChange={e => setEmail(e.target.value)} />
-
+                    required
+                    onChange={e => setEmail(e.target.value)}
+                    error={!!error.emailError} 
+                    helperText={error.emailError}
+                    />
                 <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
                     <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
                     <OutlinedInput
@@ -86,17 +147,20 @@ export default function Registro() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
-                </FormControl>
+                    {error.passwordError &&  <Alert severity="error">{error.passwordError}</Alert>} <br />
 
-                <Button
+                    <Button  
                     type="submit"
                     variant="outlined"
-                    sx={{ mt: 2 }}
                 >
                     Acceder
                 </Button>
+                </FormControl>
 
             </Box>
+            <p>Olvidé mi contraseña</p>
+
+            </div>
         </>
     )
 }

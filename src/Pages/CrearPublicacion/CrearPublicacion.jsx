@@ -4,6 +4,7 @@ import { Context } from "../../Context/Context"
 import { Box, TextField, MenuItem, Button, Typography, Container } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
 import "./CrearPublicacion.css"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ const CrearPublicacion = () => {
 
     const { user } = useContext(UserContext)
     const { createProduct } = useContext(Context)
+    const navigate = useNavigate()
 
     const [titulo, setTitulo] = useState("")
     const [autor, setAutor] = useState("")
@@ -34,10 +36,12 @@ const CrearPublicacion = () => {
             estado,
             imagen,
             reseña,
-            id: Date.now(),
+            id: Date.now().toString(),
             user: user.email
         }
         createProduct(newProduct);
+        navigate("/MisPublicaciones")
+    
 
     };
     const tapas = [

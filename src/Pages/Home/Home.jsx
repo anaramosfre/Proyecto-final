@@ -1,5 +1,8 @@
 import "./Home.css";
-import { Typography, Grid } from "@mui/material";
+
+import { Typography, Grid, TextField, InputAdornment, IconButton, FormControl, Select, MenuItem, InputLabel } from "@mui/material";
+
+import SearchIcon from '@mui/icons-material/Search';
 import CardProduct from "../../Components/Card/Card";
 import { useContext, useState } from "react";
 import { Context } from "../../Context/Context";
@@ -40,35 +43,62 @@ const Home = () => {
     }
 
     return (
-        <>
+        <>  
+    
             <header className="bg-section"></header>
-
             <main>
                 <Typography variant="h5" textAlign="center"> Catálogo </Typography>
-                <input
+
+                <div className="filtros">
+                <FormControl  sx={{ m: 1, minWidth: 350 }}>
+                <TextField
                     type="text"
-                    placeholder="Titulo o Autor"
+                    placeholder="Título o Autor"
                     value={searchText}
                     onChange={handleSearchTextChange}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <IconButton>
+                                    <SearchIcon />
+                                </IconButton>
+                            </InputAdornment>
+                        ),
+                    }}
                 />
+                </FormControl>
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-standard-label">Categorías</InputLabel>
+                    <Select
+                        value={categoriaSeleccionada}
+                        onChange={handleCategoriaSeleccionada}
+                    >
+                        <MenuItem value="">
+                            <em>Categorías</em>
+                        </MenuItem>
+                        {categoriasUnicas.map((categoria) => (
+                            <MenuItem value={categoria} key={categoria}>
+                                {categoria}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <FormControl variant="filled" sx={{ m: 1, minWidth: 200 }}>
+                <InputLabel id="demo-simple-select-standard-label">Ordenar por precio</InputLabel>
+                    <Select
+                        value={ordenPrecio}
+                        onChange={handleOrdenPrecio}
+                    >
+                        <MenuItem value="">
+                            <em>Ordenar por Precio</em>
+                        </MenuItem>
+                        <MenuItem value="mayor">Mayor a Menor</MenuItem>
+                        <MenuItem value="menor">Menor a Mayor</MenuItem>
+                    </Select>
+                </FormControl>
 
-                <select
-                    value={categoriaSeleccionada}
-                    onChange={handleCategoriaSeleccionada}>
-                    <option value="" >Categorías </option>
-                    {categoriasUnicas.map((categoria) => (
-                        <option value={categoria} key={categoria}>{categoria}</option>
-                    ))}
-                </select>
-
-                <select
-                    value={ordenPrecio}
-                    onChange={handleOrdenPrecio}>
-                    <option value=""> Ordenar por Precio</option>
-                    <option value="mayor">Mayor a Menor</option>
-                    <option value="menor">Menor a Mayor</option>
-                </select>
-
+                </div>
+                
                 <Grid container justifyContent="center">
                     {librosFiltrados.map((libro) => (
                         <CardProduct key={libro.id} libro={libro} />
@@ -76,7 +106,7 @@ const Home = () => {
                 </Grid>
             </main>
         </>
-    );
+    )
 };
 
 export default Home;

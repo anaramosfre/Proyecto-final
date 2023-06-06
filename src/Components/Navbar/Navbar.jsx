@@ -3,13 +3,17 @@ import "./Navbar.css"
 import NavListDrawer from "./NavListDrawer";
 import { useContext, useState } from "react";
 import { AppBar, Box, Drawer, IconButton, Toolbar, Typography, Button } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu'; 
+import MenuIcon from '@mui/icons-material/Menu';
 import { UserContext } from "../../Context/UserContext";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CarritoContext } from "../../Context/CarritoContext";
+
 
 
 export default function Navbar() {
 
     const { user, logout } = useContext(UserContext)
+    const {carrito } = useContext(CarritoContext);
     const [open, setOpen] = useState(false)
 
 
@@ -48,6 +52,15 @@ export default function Navbar() {
                                     component={NavLink}
                                     onClick={logout}
                                 > Cerrar Sesión </Button>
+                                <IconButton 
+                                component={NavLink}
+                                to={"/Carrito"}
+                                color="inherit"
+                                size="small"
+                                >
+                                    <ShoppingCartIcon/>
+                                    {carrito.length}
+                                </IconButton>
                             </>
                         ) : (
                             <>

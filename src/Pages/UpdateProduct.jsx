@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { UserContext } from "../Context/UserContext";
 import { Box, TextField, MenuItem, Button, Typography, Container } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
+import Swal from "sweetalert2";
+import EditIcon from '@mui/icons-material/Edit';
+
 
 
 
@@ -58,29 +61,7 @@ const UpdateProduct = () => {
         setEstado(findProduct.estado);
         setReseña(findProduct.reseña);
         setImagen(findProduct.imagen);
-    }, [id]);
-
-
-    // useEffect(() => {
-    //     if (libros.length === 0) {
-    //       return;
-    //     }
-      
-    //     const findProduct = libros.find((item) => item.id === parseInt(id));
-      
-    //     if (findProduct) {
-    //       // Asignar las propiedades del producto encontrado a los estados correspondientes
-    //       setTitulo(findProduct.titulo);
-    //       setAutor(findProduct.autor);
-    //       setEditorial(findProduct.editorial);
-    //       setCategorias(findProduct.categorias);
-    //       setEncuadernacion(findProduct.encuadernacion);
-    //       setPrecio(findProduct.precio);
-    //       setEstado(findProduct.estado);
-    //       setReseña(findProduct.reseña);
-    //       setImagen(findProduct.imagen);
-    //     }
-    //   }, [id, libros]);
+    }, [id,]);
 
 
     const handleSubmit = (e) => {
@@ -92,13 +73,22 @@ const UpdateProduct = () => {
             categorias,
             encuadernacion,
             precio,
+            reseña,
             estado,
             imagen,
             id,
             user: user.email
         }
-        updateProduct(newProduct);
-        console.log("editado")
+        updateProduct(newProduct); 
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Producto actualizado',
+            showConfirmButton: false,
+            timer: 1500
+        })
+
+        
     };
 
     return (
@@ -115,7 +105,7 @@ const UpdateProduct = () => {
                     onSubmit={handleSubmit} >
                     <Typography
                         variant="h5"
-                    >Editar Publicación</Typography>
+                    > <EditIcon fontSize="medium"/> Editar Publicación</Typography>
                     <TextField
                         variant="filled" 
                         label="Titulo"

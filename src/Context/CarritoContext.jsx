@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 import { createContext } from "react";
-import {Context} from "../Context/Context"
+import Swal from "sweetalert2";
 
 export const CarritoContext = createContext()
 
@@ -15,9 +15,13 @@ const CarritoProvider= ({children}) => {
             const newLibros = carrito.map((item) => 
                 item.id === findID.id ? {...libro, cantidad: findID.cantidad + 1 } : item
                 );
-                return setCarrito(newLibros)
+                return setCarrito(newLibros)   
         }
-        setCarrito([...carrito, {...libro,cantidad: 1}]);  
+        setCarrito([...carrito, {...libro,cantidad: 1}]); 
+        Swal.fire({
+            icon: 'success',
+            title: 'Agregado al carrito 🛒',
+        })
     };
 
     const aumentarCantidad = (id) => {
@@ -39,10 +43,15 @@ const CarritoProvider= ({children}) => {
         (acc, item) => item.precio * item.cantidad + acc, 0, 
     );
 
+    const eliminarProducto = (id) => {
+        const newCarrito = carrito.filter((item) => item.id !== id);
+        setCarrito(newCarrito);
+    }
+
 
 
     return (
-        <CarritoContext.Provider value={{carrito, addLibro, aumentarCantidad, disminuirCantidad, sumaCarrito }}>
+        <CarritoContext.Provider value={{carrito, addLibro, aumentarCantidad, disminuirCantidad, sumaCarrito, eliminarProducto }}>
             {children}
         </CarritoContext.Provider>
     );

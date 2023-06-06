@@ -12,14 +12,14 @@ export default function MisPublicaciones() {
 
     return (
         <>
-    
             <div>
-            <Typography variant="h5" textAlign="center">Mis Publicaciones</Typography>
+            <Typography variant="h5" textAlign="center" marginTop="50px">Mis Publicaciones</Typography>
                 {libros.filter((libro) => libro.user === user.email)
                     .map((libro) => (
                         <Grid  
                         container
-                        key={libro.id}>
+                        key={libro.id}
+                        justifyContent="center">
                             <Card sx={{ display: "flex", m: 3, width: '70ch' }} >
                                 <Box sx={{ display: "flex", flexDirection: "row"}}>
                                     <CardMedia
@@ -51,6 +51,9 @@ export default function MisPublicaciones() {
                                         <Typography>
                                             Reseña: {libro.reseña}
                                         </Typography>
+                                        <Typography variant="h6">
+                                            $ {libro.precio}
+                                        </Typography>
 
                                         <Button
                                         sx={{mt: 2, mr: 2}}
@@ -63,19 +66,17 @@ export default function MisPublicaciones() {
                                         to={`/updateProduct/${libro.id}`}
                                         variant="contained"
                                         >Editar</Button>
+                                        <Button
+                                        sx={{mt: 2, mr: 2}}
+                                        component={Link}
+                                        to={"/"}
+                                        variant="contained"
+                                        >Ver Publicación</Button>
                                     </CardContent>
                                 </Box>
-
                             </Card>
-
-
                         </Grid>
-                    )
-
-                    )
-                }
+                    ))}
             </div>
-
         </>
-    )
-}
+    )}

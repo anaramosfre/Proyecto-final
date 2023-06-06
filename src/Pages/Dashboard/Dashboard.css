@@ -1,20 +1,21 @@
-.datos {
+
+.menu {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    background-color: #F9F5F6
 }
 
-aside {
-
+.perfil {
+    width: 500px;
+    height: 400px;
+    margin: auto;
+    padding: 50px;
+    background-color: #F9F5F6
 }
 
-section {
-    
+.usuario {
     display: flex;
-}
-
-.dashboard {
-    display: flex;
-    width: 1070px;
-    justify-content: space-between;
+    width: 350px;
+    margin: auto;
 }
 

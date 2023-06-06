@@ -20,14 +20,14 @@ export default function DetalleProducto() {
 
     const libro = getLibroById(params.id);
 
-    const navigate = useNavigate();
+
 
     const handleclickAdd = ({id, precio, imagen, titulo}) => {
         addLibro({id, precio, imagen, titulo}); 
-        navigate("/carrito");
+    
     }
 
-  
+
 
 
     return (

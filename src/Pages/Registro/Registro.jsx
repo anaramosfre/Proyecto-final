@@ -8,6 +8,9 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { UserContext } from "../../Context/UserContext";
+import Alert from '@mui/material/Alert';
+import Swal from "sweetalert2";
+
 
 
 const Registro = () => {
@@ -21,74 +24,79 @@ const Registro = () => {
 
 
 
-    // const [error, setError] = useState({
-    //     error: false,
-    //     message: "",
-    // });
-    // const validarEmail = (email) => {
-    //     const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    //     return regex.test(email);
-    // };
-    // const handleSubmitValidar = (e) => {
-    //     e.preventDefault();
-    //     if (validarEmail(email)) {
-    //         setError({
-    //             error: false,
-    //             message: "",
-    //         });
-    //     } else {
-    //         setError({
-    //             error: true,
-    //             message: "Formato de email incorrecto",
-    //         });
-    //     }
-    // };
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-
-    //     register({
-    //         name, 
-    //         email,
-    //         password
-    //     })
-    // };
-
     const [error, setError] = useState({
         error: false,
         message: "",
     });
+
+    const [showAlert, setShowAlert] = useState(false);
 
     const validarEmail = (email) => {
         const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         return regex.test(email);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-      
-        if (validarEmail(email)) {
-            setError({
-                error: false,
-                message: "",
-            });
-       
-            register({
-                name,
-                email,
-                password,
-                id: Date.now(), 
-            });
-        } else {
-            setError({
-                error: true,
-                message: "Formato de email incorrecto",
-            });
+    const validarFormulario = () => {
+        let valid = true;
+        const errors = {
+            nameError: "",
+            emailError: "",
+            passwordError: ""
+        };
+        if (name.trim() === "") {
+            errors.nameError = "El campo de nombre es obligatorio";
+            valid = false;
         }
+
+        if (!validarEmail(email)) {
+            errors.emailError = "Formato de email no es válido";
+            valid = false;
+        }
+
+        if (password.length < 6) {
+            errors.passwordError = "La contraseña debe tener al menos 6 caracteres"
+            valid = false;
+        } 
+        if  (!/\d/.test(password)) {
+            errors.passwordError = "La contraseña debe contener al menos un número"
+            valid = false;
+        } 
+        if (/\s/.test(password)) {
+            errors.passwordError = "La contraseña no debe contener espacios"
+            valid = false;
+        }
+        if (password !== rePassword) {
+            setShowAlert(true);
+            valid = false;
+        }
+
+        setError(errors);
+        return valid;
     };
 
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!validarFormulario()) {
+            return;
+        }
+
+        const user = register({
+            name,
+            email,
+            password,
+            id: Date.now(),
+        });
+        if (user) {
+            return Swal.fire({
+                icon: 'error',
+                text: 'La cuenta ya está registrada',
+                footer: '<a href="">Recuperar contraseña</a>'
+            })
+        }
+
+    };
 
 
 
@@ -114,20 +122,20 @@ const Registro = () => {
                     type="text"
                     variant="outlined"
                     fullWidth
-                    required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    error={!!error.nameError}
+                    helperText={error.nameError}
                 />
 
                 <TextField
                     id="email"
                     label="Email"
-                    type="email"
+                   
                     variant="outlined"
                     fullWidth
-                    required
-                    error={error.error}
-                    helperText={error.message}
+                    error={!!error.emailError}
+                    helperText={error.emailError}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -153,11 +161,12 @@ const Registro = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {error.passwordError && <Alert severity="error">{error.passwordError}</Alert>}
                 </FormControl>
                 <FormControl sx={{ mt: 3 }} variant="outlined" fullWidth>
                     <InputLabel htmlFor="outlined-adornment-password">Repita contraseña</InputLabel>
                     <OutlinedInput
-                        id="outlined-adornment-password"
+                        id="outlined-adornment-password-confirm"
                         type={showPassword ? 'text' : 'password'}
                         endAdornment={
                             <InputAdornment position="end">
@@ -175,6 +184,10 @@ const Registro = () => {
                         value={rePassword}
                         onChange={(e) => setRePassword(e.target.value)}
                     />
+                    {showAlert && (
+                        <Alert severity="error">Las contraseñas no coinciden</Alert>
+                    )}
+
                 </FormControl>
 
                 <Button

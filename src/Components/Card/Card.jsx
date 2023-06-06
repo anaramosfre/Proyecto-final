@@ -12,22 +12,23 @@ import { Box } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { FavoritesContext } from "../../Context/FavoritesContex";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { CarritoContext } from "../../Context/CarritoContext";
+import { FormatAlignJustify } from "@mui/icons-material";
+
 
 
 
 
 
 const CardProduct = ({ libro }) => {
-    const {addFavorites, favorites} = useContext(FavoritesContext);
+    const { addFavorites, favorites } = useContext(FavoritesContext);
     const { addLibro } = useContext(CarritoContext);
-    const navigate = useNavigate();
+
 
 
     const handleclickAdd = ({ id, precio, imagen, titulo }) => {
         addLibro({ id, precio, imagen, titulo });
-        navigate("/carrito");
+
     }
 
     return (
@@ -85,17 +86,17 @@ const CardProduct = ({ libro }) => {
                         variant="outlined"
                         onClick={() => handleclickAdd(libro)}
                     >
-                        Comprar</Button>
-                    <IconButton
+                    Comprar</Button>
+                <IconButton
                     aria-label="delete"
                     onClick={() => addFavorites(libro)}
                     disabled={favorites.some((item) => item.id === libro.id)}
                     color="warning"
-                    > 
-                    <FavoriteIcon/>
-                    </IconButton>      
-                </CardActions>
-            </Card>
+                >
+                    <FavoriteIcon />
+                </IconButton>
+            </CardActions>
+        </Card >
 
 
 

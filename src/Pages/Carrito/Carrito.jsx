@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Carrito() {
 
-    const {carrito, aumentarCantidad, disminuirCantidad, sumaCarrito } = useContext(CarritoContext); 
+    const {carrito, aumentarCantidad, disminuirCantidad, sumaCarrito, eliminarProducto } = useContext(CarritoContext); 
 
     const handleAumentarCantidad = (id) => {
         aumentarCantidad(id); 
@@ -22,7 +22,7 @@ export default function Carrito() {
 
         <>
             <Box className="pedido">
-                <Typography variant="h5">Detalles del pedido</Typography> <hr /> <br />
+                <Typography variant="h5">Mis Productos</Typography> <hr /> <br />
                 <div>
                     {carrito.map((element) =>
                         <div className="carrito">
@@ -42,7 +42,11 @@ export default function Carrito() {
                                     color="info"
                                     onClick={() => handleAumentarCantidad(element.id) }
                                 >+</Button>
-                                <IconButton aria-label="delete" size="large">
+                                <IconButton 
+                                aria-label="delete" 
+                                size="large"
+                                onClick={() => eliminarProducto(element.id)}
+                                >
                                 <DeleteIcon
                                 fontSize="inherit"
                                 />
