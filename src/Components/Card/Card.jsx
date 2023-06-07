@@ -16,10 +16,6 @@ import { CarritoContext } from "../../Context/CarritoContext";
 import { FormatAlignJustify } from "@mui/icons-material";
 
 
-
-
-
-
 const CardProduct = ({ libro }) => {
     const { addFavorites, favorites } = useContext(FavoritesContext);
     const { addLibro } = useContext(CarritoContext);
@@ -63,17 +59,17 @@ const CardProduct = ({ libro }) => {
                             {libro.titulo}
 
                         </Typography>
-                        <Typography gutterBottom >
+                        <Typography gutterBottom variant="h6">
                             ${libro.precio}
 
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body3" color="text.secondary">
                             Autor: {libro.autor}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body3" color="text.secondary">
                             Categoria: {libro.categorias}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body3" color="text.secondary">
                             Estado: {libro.estado}
                         </Typography>
 

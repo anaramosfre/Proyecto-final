@@ -7,6 +7,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 
 
 
@@ -103,7 +105,7 @@ export default function NavListDrawer({ NavLink, setOpen }) {
                                         to={"/IniciarSesion"}
                                         onClick={() => setOpen(false)}>
                                         <ListItemIcon>
-                                            <HomeIcon />
+                                            <LoginIcon />
                                         </ListItemIcon>
                                         <ListItemText primary="Iniciar Sesión" />
                                     </ListItemButton>
@@ -121,7 +123,7 @@ export default function NavListDrawer({ NavLink, setOpen }) {
                                         to={"/Registro"}
                                         onClick={() => setOpen(false)}>
                                         <ListItemIcon>
-                                            <HomeIcon />
+                                            <AppRegistrationIcon />
                                         </ListItemIcon>
                                         <ListItemText primary="Registrarse" />
                                     </ListItemButton>

@@ -59,6 +59,7 @@ export default function MisPublicaciones() {
                                         sx={{mt: 2, mr: 2}}
                                         onClick={() => deleteProduct(libro.id)}
                                         variant="contained"
+                                        
                                         >Eliminar</Button>
                                         <Button
                                         sx={{mt: 2, mr: 2}}
