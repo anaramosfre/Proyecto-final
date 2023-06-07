@@ -7,13 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { UserContext } from "../../Context/UserContext";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CarritoContext } from "../../Context/CarritoContext";
-
+import logo from "../../assets/logofinal.png"
 
 
 export default function Navbar() {
 
     const { user, logout } = useContext(UserContext)
-    const {carrito } = useContext(CarritoContext);
+    const { carrito } = useContext(CarritoContext);
     const [open, setOpen] = useState(false)
 
 
@@ -31,7 +31,13 @@ export default function Navbar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }} >Libros</Typography>
+                    <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                        <img className="logo" src={logo} alt="" />
+                        <Typography variant="body1" sx={{ marginLeft: '10px', fontFamily:'initial', fontSize: '23px' }}>
+                           Alma Libros
+                        </Typography>
+
+                    </Box>
 
                     <Box sx={{ display: { xs: "none", sm: "block" } }} >
                         <Button
@@ -52,13 +58,13 @@ export default function Navbar() {
                                     component={NavLink}
                                     onClick={logout}
                                 > Cerrar Sesión </Button>
-                                <IconButton 
-                                component={NavLink}
-                                to={"/Carrito"}
-                                color="inherit"
-                                size="small"
+                                <IconButton
+                                    component={NavLink}
+                                    to={"/Carrito"}
+                                    color="inherit"
+                                    size="small"
                                 >
-                                    <ShoppingCartIcon/>
+                                    <ShoppingCartIcon />
                                     {carrito.length}
                                 </IconButton>
                             </>

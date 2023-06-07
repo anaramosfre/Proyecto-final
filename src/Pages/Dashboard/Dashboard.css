@@ -2,7 +2,7 @@
 .menu {
     display: flex;
     justify-content: space-around;
-    background-color: #F9F5F6
+    background-color: #F9F5F6;
 }
 
 .perfil {

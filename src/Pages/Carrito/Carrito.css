@@ -2,35 +2,26 @@
     border: solid rgb(194, 192, 192) 1px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.099);
     background-color: #F7F7F7;
-    width: 1000px;
+    width: 450px;
     padding: 50px;
-    margin: auto;
-    margin-top: 200px;
+    margin: 30px auto;
+
+    
 }
 .carrito {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     border-bottom: solid rgb(194, 192, 192) 1px;
-    padding: 10px;
     font-size: 18px;
+    gap: 10px ;
+    
 }
 .carrito-detalle {
     display: flex;
-    width: 400px;
+    width: 200px;
     align-items: center;
     justify-content: space-around;
 }
 
 
-
-
-
-.titulo-carrito {
-    margin: auto;
-    margin-left: 10px;
-}
-.button-pagar {
-    background-color: hsla(103, 96%, 36%, 0.824);
-}
-.total {
-    font-size: 22px;
-}

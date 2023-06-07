@@ -1,7 +1,7 @@
 import "./Dashboard.css"
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Context/UserContext";
-import { Typography, Box, List, ListItem, ListItemButton, Button, TextField} from "@mui/material";
+import { Typography, Box, List, ListItem, ListItemButton, Button, TextField, Grid} from "@mui/material";
 import { Link } from "react-router-dom";
 import Alert from '@mui/material/Alert';
 import Swal from "sweetalert2";
@@ -90,8 +90,8 @@ const Dashboard = () => {
 
     return (
         <>
-            <div className="menu">
-                <Box sx={{ width: 200, }}>
+            <Grid container className="menu">
+                <Box sx={{ width: 200 }}>
                     <List>
                         <ListItem disablePadding>
                             <ListItemButton>
@@ -104,7 +104,7 @@ const Dashboard = () => {
                         </ListItem>
                     </List>
                 </Box>
-                <Box sx={{ width: 200, }}>
+                <Box sx={{ width: 200 }}>
                     <List>
                         <ListItem disablePadding>
                             <ListItemButton>
@@ -117,9 +117,9 @@ const Dashboard = () => {
                         </ListItem>
                     </List>
                 </Box>
-                <Box sx={{ width: 200, }}>
+                <Box sx={{ width: 200 }}>
                     <List>
-                        <ListItem disablePadding>
+                        <ListItem  disablePadding>
                             <ListItemButton>
                                 <Button
                                     component={Link}
@@ -143,7 +143,20 @@ const Dashboard = () => {
                         </ListItem>
                     </List>
                 </Box>
-            </div>
+                <Box sx={{ width: 200 }}>
+                    <List>
+                        <ListItem disablePadding>
+                            <ListItemButton>
+                                <Button
+                                    component={Link}
+                                    to={"/DonarProduct"}
+                                > Donaciones
+                                </Button>
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
+                </Box>
+            </Grid>
             
             <div className="usuario">
             <Avatar name={user.name} size={50} round={true} /> 

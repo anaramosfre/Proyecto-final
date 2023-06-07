@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import "./Carrito.css"
-import { Box, Typography, Button } from "@mui/material"
+import { Box, Typography, Button, Grid } from "@mui/material"
 import { CarritoContext } from "../../Context/CarritoContext"
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -20,16 +20,18 @@ export default function Carrito() {
 
     return (
 
-        <>
+        <>  
             <Box className="pedido">
                 <Typography variant="h5">Mis Productos</Typography> <hr /> <br />
                 <div>
                     {carrito.map((element) =>
                         <div className="carrito">
-                            <img width="70px" src={element.imagen} />
-                            <p className="titulo-carrito"> {element.titulo} </p>
+                            <Typography variant="h7" className="titulo-carrito"> {element.titulo} </Typography>
+                            <img width="80px" src={element.imagen} />
+                            <Typography variant="h6">$  {element.cantidad * element.precio} </Typography>
+                             
                             <div className="carrito-detalle">
-                                <span>$  {element.cantidad * element.precio} </span>
+                              
                                 <Button
                                     variant="contained"
                                     color="error"
@@ -42,7 +44,8 @@ export default function Carrito() {
                                     color="info"
                                     onClick={() => handleAumentarCantidad(element.id) }
                                 >+</Button>
-                                <IconButton 
+                            </div>
+                            <IconButton 
                                 aria-label="delete" 
                                 size="large"
                                 onClick={() => eliminarProducto(element.id)}
@@ -51,17 +54,19 @@ export default function Carrito() {
                                 fontSize="inherit"
                                 />
                                 </IconButton>
-                            </div>
                         </div>
                     )}
                 </div><br />
-                <span> Total $ {sumaCarrito} </span> <br />
+                <Typography variant="h6"> Total $ {sumaCarrito} </Typography> <br />
                 <Button
                     variant="contained"
                     color="success"
                 >Ir a Pagar</Button>
 
             </Box>
+
+          
+           
 
         </>
     )

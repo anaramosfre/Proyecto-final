@@ -2,6 +2,7 @@ import "./Footer.css"
 import { Typography, IconButton } from "@mui/material"
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 
 export default function Footer() {
@@ -19,15 +20,15 @@ export default function Footer() {
                 size="large">
                 <FacebookIcon />
             </IconButton>
-
-
-         
+            <IconButton
+                color="inherit"
+                size="large">
+                <WhatsAppIcon/>
+            </IconButton>
 
             <Typography>
                 Todos los derechos reservados
             </Typography>
-
-
         </footer>
     )
 }

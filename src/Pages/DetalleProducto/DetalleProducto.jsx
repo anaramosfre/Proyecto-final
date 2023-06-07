@@ -1,4 +1,4 @@
-import { Card, Box, CardContent, Typography, CardMedia, Button} from "@mui/material";
+import { Card, Box, CardContent, Typography, CardMedia, Button, Grid} from "@mui/material";
 import { useContext } from "react";
 import {FavoritesContext} from"../../Context/FavoritesContex"
 import {CarritoContext} from "../../Context/CarritoContext"
@@ -32,8 +32,8 @@ export default function DetalleProducto() {
 
     return (
         <>      
-        
-                <Card className="cardDetalle" sx={{ display: "flex"}} >
+                <Grid container >
+                <Card  className="cardDetalle" sx={{ display: "flex", mt:15 }} >
                     <Box sx={{ display: "flex", flexDirection: "row" }}>
                         <CardMedia
                             component="img"
@@ -70,19 +70,22 @@ export default function DetalleProducto() {
                             
                             <br />
 
-                            <Button
+                            <Button sx={{m:1}}
                             onClick={() => handleclickAdd(libro)}
+                            variant="outlined"
+                    
                             >Comprar</Button>
                             <Button
                             onClick={() => addFavorites(libro)}
+                            variant="outlined"
                             
                             >Agregar a favoritos</Button>
                         </CardContent>
                     </Box>
                     
                 </Card> 
-                        
-    
+
+                </Grid>
             
         </>
     )}

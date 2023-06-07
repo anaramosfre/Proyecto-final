@@ -6,6 +6,7 @@ import CardProduct from "../../Components/Card/Card";
 import { useContext, useState } from "react";
 import { Context } from "../../Context/Context";
 import { Link } from "react-router-dom";
+import Fab from '@mui/material/Fab';
 
 
 const Home = () => {
@@ -44,28 +45,30 @@ const Home = () => {
 
     return (
         <>  
-    
             <header className="bg-section">
                 <div className="titulo">
-                <Typography variant="h3">
-                    ¿Tienes libros usados que quieras vender o comprar?
+                <Typography variant="h2">
+                Ayúdanos a fomentar la lectura y su acceso
+                </Typography>  <br />
+                <Typography variant="h4"> 
+                Puedes comprar, vender o donar tus libros.
                 </Typography>
-                <Typography variant="h4"> <br />
-                    Libros con pasado, historias con futuro
+                <Typography variant="h5" sx={{fontFamily:'initial'}}> <br />
+                Libros con pasado, historias con futuro...
                 </Typography>
                 <div className="boton">
-                <Button sx={{ width: 300, borderRadius:50 }} variant="contained"
+                <Fab sx={{width:200 }} variant="extended"
                 component={Link}
                 to={"./Registro"}
                 >
                     Comienza Aquí
-                </Button>
+                </Fab>
                 </div>
                 </div>
             </header>
             <main>
                 <div className="subtitulo">
-                <Typography sx={{m:1}} variant="h4" textAlign="center" color="primary"> Catálogo </Typography> 
+                <Typography sx={{m:1}} variant="h4" textAlign="center" color="primary"> Nuestro Catálogo </Typography> 
                 <div className="filtros">
                 <FormControl  sx={{ m: 1, width: 480 }}>
                 <TextField
