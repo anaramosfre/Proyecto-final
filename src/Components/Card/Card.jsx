@@ -59,17 +59,17 @@ const CardProduct = ({ libro }) => {
                             {libro.titulo}
 
                         </Typography>
-                        <Typography gutterBottom variant="h6">
+                        <Typography gutterBottom variant="h5">
                             ${libro.precio}
 
                         </Typography>
-                        <Typography variant="body3" color="text.secondary">
+                        <Typography variant="body1" color="text.secondary">
                             Autor: {libro.autor}
                         </Typography>
-                        <Typography variant="body3" color="text.secondary">
+                        <Typography variant="body1" color="text.secondary">
                             Categoria: {libro.categorias}
                         </Typography>
-                        <Typography variant="body3" color="text.secondary">
+                        <Typography variant="body1" color="text.secondary">
                             Estado: {libro.estado}
                         </Typography>
 

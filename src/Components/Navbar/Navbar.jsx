@@ -34,7 +34,7 @@ export default function Navbar() {
                     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
                         <img className="logo" src={logo} alt="" />
                         <Typography variant="body1" sx={{ marginLeft: '10px', fontFamily:'initial', fontSize: '23px' }}>
-                           Alma Libros
+                        Alma Libros
                         </Typography>
 
                     </Box>
